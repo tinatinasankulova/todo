@@ -21,10 +21,25 @@ const addToDos = (todo) => {
    setToDos([...todos, todo])
 } 
 
+const togglieHandler = (id) =>{
+  setToDos([
+    ...todos.map((todo) => todo.id === id ? { ...todo, completed: !todo.completed} : {...todo})
+  ])
+}
+
+const deleteHandler = id => {
+  setToDos(prevState => {
+    const updatedToDo = prevState.filter(todo => todo.id !== id);
+    return updatedToDo;
+  });
+};
+
+
+
   return (
     <div>
      <AddToDo onAddToDo={addToDos}/>
-     <ToDos todos={todos}/>
+     <ToDos todos={todos} toggle={togglieHandler} deleteItemHandler={deleteHandler} />
     </div>
   );
 }

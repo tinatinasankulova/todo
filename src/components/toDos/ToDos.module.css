@@ -2,6 +2,8 @@
   width: 600px;
   border: 1px solid black;
   margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap-reverse;
 }
 
 .wrapper ul {
@@ -29,6 +31,8 @@
 }
 
 
-.checked  {
+.checked-todo  {
  text-decoration: line-through;
+ text-decoration-color: rgb(232, 5, 5);
+ text-decoration-style:double;
 }

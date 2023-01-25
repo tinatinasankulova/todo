@@ -1,38 +1,28 @@
-import { useState} from "react";
+import Button from "../ui/button/Button";
 import Card from "../ui/card/Card";
 import style from "./ToDos.module.css";
 
 const ToDos = (props) => {
-const [isChecked, setIsChecked] = useState(false);
-
-
-const checkedInput = (event) => {
-  const complited = event.target.checked
-  
-  if(complited) {
-    setIsChecked(true)
-  }
-  if(!complited) {
-    setIsChecked(false)
-  }
-}
 
   return (
     <Card className={style.wrapper}>
-      <ul>
-        {props.todos.map((todo) => {
-          return (
-            <div  key={todo.id} className={style.div} >
-              <li key={todo.id} className={`${isChecked ? style.checked : ''}`} >
-                <input type="checkbox" onChange={checkedInput} id={todo.id}/>
-                  {todo.todo}     </li>
-                <div className={style.date}>
-                  {todo.date}
-                </div>
-            </div>
-          );
-        })}
-      </ul>
+      {props.todos.map((todo) => {
+        return (
+          <ul key={todo.id}>
+            <li
+              className={todo.completed ? style["checked-todo"] : ""}
+              onClick={() => props.toggle(todo.id)}
+            >
+              <input type="checkbox" id={todo.id} defaultChecked={todo.completed}  />
+              {todo.todo}
+              <div className={style.date}>{todo.date} </div>
+            </li>
+            <Button onClick={() => props.deleteItemHandler(todo.id)}>
+              delete
+            </Button>
+          </ul>
+        );
+      })}
     </Card>
   );
 };

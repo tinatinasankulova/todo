@@ -12,7 +12,7 @@ if (action.type === 'INPUT_VALUE') {
     item: action.payload
   }
 }
-if (action.type === 'NOTHING') {
+if (action.type === 'CLEANUP') {
   return {
     ...state,
     item: ''
@@ -42,12 +42,12 @@ if (todo.item.trim().length === 0) {
 
   const data = {
     todo: todo.item,
-    date: new Intl.DateTimeFormat('en-Us').format(),
+    date: new Intl.DateTimeFormat('ru-RU').format(),
     completed: false,
     id: Math.random().toString()
   }
   props.onAddToDo(data);
-   dispatchTodo({type: 'NOTHING'})
+   dispatchTodo({type: 'CLEANUP'})
 }
 
 const closeModalHandler = () => {
